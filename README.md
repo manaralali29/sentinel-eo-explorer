@@ -24,9 +24,8 @@ sentinel-eo-explorer/
 ├── backend/
 │   ├── main.py            # FastAPI server (search, tile, download endpoints)
 │   ├── config.py          # Loads credentials from .env
-│   ├── requirements.txt   # Python dependencies
-│   ├── .env.example       # Template for credentials (copy to .env)
-│   └── .env               # Your actual credentials (DO NOT COMMIT)
+│   ├── requirements.txt   # Python dependencies     
+│   └── .env.example       # Template for credentials (copy to .env)
 ├── frontend/
 │   ├── index.html         # Main page layout
 │   ├── style.css          # Styling
@@ -159,6 +158,3 @@ Then open `http://localhost:5500` in your browser.
 
 ---
 
-## Security Note
-
-The `.env` file contains sensitive credentials and is excluded from version control via `.gitignore`. Never commit or share this file. Anyone cloning this repository must create their own `.env` from `.env.example` using their own CDSE account.
