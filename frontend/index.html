@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentinel EO Data Explorer</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <!-- Leaflet Draw CSS (for drawing AOI rectangles/polygons) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
+  />
+
+  <!-- Our custom styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Left Sidebar: Controls & Results -->
+  <div id="sidebar">
+    <h1>Sentinel EO Explorer</h1>
+    <p class="subtitle">Search Sentinel-2 satellite imagery</p>
+
+    <!-- Instructions -->
+    <div class="instructions">
+      <strong>How to use:</strong>
+      Draw a rectangle on the map using the tool on the left side of the map,
+      set your date range and cloud filter below, then click Search.
+    </div>
+
+    <!-- Search Form -->
+    <div class="form-group">
+      <label for="start-date">Start Date &amp; Time</label>
+      <input type="datetime-local" id="start-date" value="2024-07-01T00:00" />
+    </div>
+
+    <div class="form-group">
+      <label for="end-date">End Date &amp; Time</label>
+      <input type="datetime-local" id="end-date" value="2024-07-31T23:59" />
+    </div>
+
+    <div class="form-group">
+      <label for="max-cloud">Max Cloud Cover: <span id="cloud-value">20</span>%</label>
+      <input
+        type="range"
+        id="max-cloud"
+        min="0"
+        max="100"
+        value="20"
+        oninput="document.getElementById('cloud-value').textContent = this.value"
+      />
+    </div>
+
+    <button id="search-btn" disabled>
+      Search Imagery
+    </button>
+
+    <div id="status-message"></div>
+
+    <!-- Results List -->
+    <div id="results-container">
+      <h2>Results</h2>
+      <div id="results-list">
+        <p class="placeholder">Draw an AOI and search to see results.</p>
+      </div>
+    </div>
+
+    <!-- Metadata Panel (shown when a scene is selected) -->
+    <div id="metadata-panel" style="display: none;">
+      <h2>Scene Metadata</h2>
+      <table id="metadata-table">
+        <tbody></tbody>
+      </table>
+      <button id="clear-overlay-btn">Remove Overlay</button>
+    </div>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet Draw JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"
+  ></script>
+
+  <!-- Our application logic -->
+  <script src="app.js"></script>
+</body>
+</html>
